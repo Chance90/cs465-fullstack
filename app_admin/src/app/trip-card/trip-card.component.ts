@@ -3,6 +3,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from "@angular/router";
 import { Trip } from "../models/trip";
+import { AuthenticationService } from '../services/authentication.service';
 
 @Component({
   selector: 'app-trip-card',
@@ -17,6 +18,7 @@ export class TripCardComponent implements OnInit {
 
   constructor(
     private router: Router,
+    private authenticationService: AuthenticationService
 
   ) { }
 
@@ -28,5 +30,10 @@ export class TripCardComponent implements OnInit {
     localStorage.setItem("tripCode", trip.code);
     this.router.navigate(['edit-trip']);
   }
+
+  public isLoggedIn()
+{
+  return this.authenticationService.isLoggedIn();
+}
 
 }
